@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Patient List</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f2f2f2;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        table {
+            width: 80%;
+            margin: auto;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        a {
+            text-decoration: none;
+            padding: 5px 10px;
+            background: blue;
+            color: white;
+            margin: 2px;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Patient List</h2>
+
+<center>
+    <a href="{% url 'patient_create' %}">Add Patient</a>
+</center>
+
+<br>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Disease</th>
+        <th>Date</th>
+        <th>Action</th>
+    </tr>
+
+    {% for p in patients %}
+    <tr>
+        <td>{{ p.name }}</td>
+        <td>{{ p.age }}</td>
+        <td>{{ p.disease }}</td>
+        <td>{{ p.admission_date }}</td>
+        <td>
+            <a href="{% url 'patient_update' p.id %}">Edit</a>
+            <a href="{% url 'patient_delete' p.id %}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+</body>
+</html>
